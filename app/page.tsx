@@ -1,113 +1,136 @@
 const WAITLIST_URL = "https://tally.so/r/o9bZyN";
 
-function CTA({ children = "QUIERO DESCUBRIR QUÉ HAY MÁS ALLÁ" }: { children?: React.ReactNode }) {
-  return <a className="button" href={WAITLIST_URL} target="_blank" rel="noreferrer">{children}<span aria-hidden="true">↗</span></a>;
+function ArchMark({ light = false }: { light?: boolean }) {
+  return (
+    <svg className={`arch-mark ${light ? "arch-mark-light" : ""}`} viewBox="0 0 52 62" role="img" aria-label="Stone arch">
+      <path d="M5 59V27C5 14.85 14.85 5 27 5s22 9.85 22 22v32" fill="none" stroke="currentColor" strokeWidth="2.2"/>
+      <path d="M11 59V27c0-8.84 7.16-16 16-16s16 7.16 16 16v32" fill="none" stroke="currentColor" strokeWidth="1" opacity=".55"/>
+      <path d="M2 59h50" stroke="currentColor" strokeWidth="1.4"/>
+    </svg>
+  );
 }
+
+function Brand({ light = false }: { light?: boolean }) {
+  return <a className={`brand ${light ? "brand-light" : ""}`} href="#" aria-label="Spiritual Energy home"><ArchMark light={light}/><span>SPIRITUAL<br/>ENERGY</span></a>;
+}
+
+function CTA({ children = "Join the Waitlist" }: { children?: React.ReactNode }) {
+  return <a className="button" href={WAITLIST_URL} target="_blank" rel="noreferrer">{children}<span aria-hidden="true">→</span></a>;
+}
+
+const convictions = [
+  { n: "01", icon: "✧", title: "Presence over productivity", text: "True growth starts when you slow down and tune in." },
+  { n: "02", icon: "☼", title: "Connection creates meaning", text: "We discover more when we share the journey." },
+  { n: "03", icon: "☾", title: "The deep takes time", text: "The most meaningful changes unfold slowly." },
+];
+
+const discoveries = [
+  "New perspectives on yourself and the world",
+  "Deeper, more authentic connections",
+  "Ideas that invite you to see things differently",
+  "More space for curiosity, meaning and presence",
+];
 
 export default function Home() {
   return (
     <main>
-      <nav className="nav wrap">
-        <a className="brand" href="#" aria-label="The Spiritual Energy, inicio"><span className="brand-mark">✳</span> the spiritual energy</a>
-        <a className="nav-link" href="#comienzo">Acceso anticipado <span>↗</span></a>
-      </nav>
+      <header className="site-header wrap">
+        <Brand />
+        <a className="header-cta" href={WAITLIST_URL} target="_blank" rel="noreferrer">Join the Waitlist <span>↗</span></a>
+      </header>
 
-      <section className="hero wrap">
-        <div className="hero-copy">
-          <p className="eyebrow"><span className="dot" /> UNA INVITACIÓN A EXPLORAR</p>
-          <h1>¿Sientes que<br />hay <em>algo más?</em></h1>
-          <p className="hero-sub">Una nueva forma de explorar lo que significa vivir, conectar y crecer.</p>
+      <section className="hero">
+        <div className="hero-photo" aria-hidden="true" />
+        <div className="hero-arch" aria-hidden="true"><div className="hero-arch-image" /></div>
+        <div className="hero-content wrap">
+          <p className="eyebrow"><span className="eyebrow-line"/> A NEW WAY TO EXPLORE</p>
+          <h1>Do you feel<br/>there’s <em>more?</em></h1>
+          <p className="hero-copy">You’re achieving, producing, and moving forward. And yet, something inside you is quietly asking for a deeper connection.</p>
           <CTA />
-          <p className="micro">Forma parte de la primera etapa.</p>
+          <p className="micro">LIMITED ACCESS · EARLY-BIRD PRIORITY</p>
         </div>
-        <div className="hero-art" aria-hidden="true">
-          <div className="sun-halo"><div className="inner-orbit"><div className="sun-core" /></div></div>
-          <span className="orbit-dot dot-one" /><span className="orbit-dot dot-two" /><span className="orbit-dot dot-three" />
-          <span className="art-note note-one">curiosidad</span><span className="art-note note-two">presencia</span>
-          <span className="art-note note-three">conexión</span>
-        </div>
-        <div className="hero-bottom"><span>01 / UNA NUEVA PERSPECTIVA</span><span>DESLIZA PARA DESCUBRIR ↓</span></div>
+        <div className="hero-caption">A SPACE TO PAUSE, DISCOVER AND CONNECT</div>
       </section>
 
-      <section className="intro section wrap">
-        <p className="eyebrow">UNA SENSACIÓN DIFÍCIL DE EXPLICAR</p>
-        <div className="intro-grid">
-          <h2>Hay preguntas<br />que merecen<br /><em>más espacio.</em></h2>
-          <div className="body-copy">
-            <p>Cumples, produces, avanzas. Y aun así, hay una parte de ti que siente que algo está cambiando. Que hay preguntas que todavía no te has hecho y experiencias que aún no has descubierto.</p>
-            <p>Quizás no sepas exactamente qué estás buscando. Pero sabes que hay algo más.</p>
+      <section className="question-section section">
+        <div className="wrap question-grid">
+          <div className="arch-window question-window" aria-hidden="true"><div/></div>
+          <div className="question-copy">
+            <p className="eyebrow">THE QUESTION</p>
+            <h2>What if you’re looking<br/>in the wrong place?</h2>
+            <p>We’ve been taught to do more. To achieve more. To be more productive. But somewhere along the way, we can lose touch with what truly matters.</p>
+            <p>We fill our days, meet expectations and keep moving. Yet we don’t always leave room to enjoy the life we’re building, to be present, or to connect in a meaningful way.</p>
+            <p className="question-emphasis">There’s more to life than checking boxes.</p>
           </div>
         </div>
       </section>
 
-      <section className="contrast">
-        <div className="wrap contrast-inner">
-          <p className="eyebrow">UNA PAUSA PARA MIRAR DE OTRA MANERA</p>
-          <h2>Estamos conectados.<br /><em>¿Pero estamos conectando?</em></h2>
-          <div className="contrast-grid">
-            <p>Nos enseñaron a hacer. Llenamos agendas, resolvemos, respondemos, producimos. Y, casi sin darnos cuenta, dejamos de prestar atención a cómo vivimos.</p>
-            <p>Tenemos acceso a miles de respuestas, pero cada vez menos tiempo para las preguntas importantes. Y encontrar conexiones que nos nutran no siempre es fácil.</p>
+      <section className="perspective-section section">
+        <div className="wrap">
+          <div className="center intro-heading">
+            <p className="eyebrow">A NEW PERSPECTIVE</p>
+            <h2>We’re exploring something different.</h2>
+            <p>Not a course. Not an app. Not a quick fix. A new way to explore spirituality, growth and connection, something that’s been missing.</p>
           </div>
-          <div className="pullquote"><span>“</span><p>Quizás no estés buscando cambiar tu vida. Quizás estés buscando descubrir otra manera de experimentarla.</p></div>
-        </div>
-      </section>
-
-      <section className="different section wrap">
-        <div className="section-heading">
-          <p className="eyebrow">LO QUE ESTAMOS EXPLORANDO</p>
-          <h2>Algo diferente<br />está tomando <em>forma.</em></h2>
-        </div>
-        <div className="different-content">
-          <p>Estamos trabajando en una propuesta que explora la espiritualidad, el crecimiento y la conexión desde una mirada abierta y contemporánea.</p>
-          <p>Todavía no queremos ponerle una etiqueta. Preferimos empezar por lo importante: escuchar, hacernos preguntas y descubrir qué necesitamos realmente.</p>
-          <div className="beliefs">
-            <article><span>01</span><h3>Hay más de una manera de crecer.</h3><p>Cada persona tiene su propio camino y su propio ritmo.</p></article>
-            <article><span>02</span><h3>La conexión transforma la experiencia.</h3><p>Lo que compartimos puede abrir perspectivas inesperadas.</p></article>
-            <article><span>03</span><h3>Lo profundo no tiene prisa.</h3><p>Hay cosas que necesitan espacio para desplegarse.</p></article>
+          <p className="eyebrow convictions-label">OUR CONVICTIONS</p>
+          <div className="conviction-grid">
+            {convictions.map((item) => <article className="conviction" key={item.n}>
+              <div className="mini-arch"><span>{item.icon}</span></div>
+              <span className="item-number">{item.n}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>)}
           </div>
         </div>
       </section>
 
-      <section className="discover">
-        <div className="wrap discover-inner">
-          <div><p className="eyebrow">UNA POSIBILIDAD</p><h2>¿Qué podrías<br /><em>descubrir?</em></h2></div>
-          <div className="discover-list">
-            {["Conocerte desde otra perspectiva","Explorar más allá de lo convencional","Encontrar nuevas formas de conexión","Dar espacio a lo que realmente importa"].map((item, i) => <div className="discover-item" key={item}><span>0{i + 1}</span><p>{item}</p><span>↗</span></div>)}
-          </div>
+      <section className="discover-section">
+        <div className="discover-image" aria-hidden="true"><div className="stone-arch arch-one"/><div className="stone-arch arch-two"/></div>
+        <div className="wrap discover-content">
+          <p className="eyebrow">WHAT YOU’LL DISCOVER</p>
+          <h2>New perspectives.<br/>Deeper connection.</h2>
+          <p>A space to explore, learn and grow, with an open mind and a curious heart.</p>
+          <CTA />
         </div>
       </section>
 
-      <section className="join section wrap" id="comienzo">
-        <div className="join-orb" aria-hidden="true"><span>✳</span></div>
-        <div className="join-copy">
-          <p className="eyebrow">EL COMIENZO ES COMPARTIDO</p>
-          <h2>Sé parte<br />del <em>comienzo.</em></h2>
-          <p>No queremos asumir qué necesitas ni decidir por ti qué debería ser esta experiencia. Queremos escucharte y aprender de las personas que sienten curiosidad por explorar algo diferente.</p>
+      <section className="journey-section section">
+        <div className="journey-decoration" aria-hidden="true"><div className="arch-window journey-window"><div/></div></div>
+        <div className="wrap journey-content">
+          <div className="center">
+            <p className="eyebrow">HOW IT WORKS</p>
+            <h2>Be part of the journey.</h2>
+          </div>
           <div className="steps">
-            <div><span>01</span><p>Te unes a la lista de acceso anticipado.</p></div>
-            <div><span>02</span><p>Nos cuentas qué estás buscando y qué te gustaría experimentar.</p></div>
-            <div><span>03</span><p>Recibes novedades e invitaciones para participar en las primeras etapas.</p></div>
-          </div>
-          <CTA>QUIERO FORMAR PARTE <span>↗</span></CTA>
-          <p className="micro">Quienes formen parte de esta primera lista recibirán una invitación especial durante la etapa inicial.</p>
-        </div>
-      </section>
-
-      <section className="about">
-        <div className="wrap about-inner">
-          <p className="eyebrow">UNA NOTA PERSONAL</p>
-          <div><h2>Todo empieza<br />con una <em>pregunta.</em></h2>
-            <p>Este proyecto nace de una inquietud personal: siento que hay dimensiones de la experiencia humana a las que podríamos dar mucho más espacio.</p>
-            <p>Me interesa explorar cómo nos relacionamos con nosotros mismos, con los demás y con el mundo. Me mueven la curiosidad, el aprendizaje continuo, las conversaciones que hacen pensar y las nuevas maneras de vivir.</p>
-            <p className="signature">No tengo todas las respuestas. Precisamente por eso, quiero empezar haciendo las preguntas adecuadas.</p>
+            <article><span className="step-number">1</span><h3>Join the Waitlist</h3><p>Share your interest in being part of this new chapter.</p></article>
+            <span className="step-arrow">→</span>
+            <article><span className="step-number">2</span><h3>Answer 4 Questions</h3><p>Help us understand what matters most to you.</p></article>
+            <span className="step-arrow">→</span>
+            <article><span className="step-number">3</span><h3>Get Early Access</h3><p>Receive updates and be among the first to know.</p></article>
           </div>
         </div>
       </section>
 
-      <footer className="footer wrap">
-        <div><a className="brand" href="#"><span className="brand-mark">✳</span> the spiritual energy</a><p>Una invitación a descubrir.</p></div>
-        <div className="footer-cta"><h2>¿Sientes que hay<br /><em>algo más?</em></h2><CTA>QUIERO DESCUBRIRLO <span>↗</span></CTA></div>
-        <div className="footer-bottom"><span>© 2026 THE SPIRITUAL ENERGY</span><span>HECHO DESDE LA CURIOSIDAD ✳</span></div>
+      <section className="about-section">
+        <div className="about-photo" aria-hidden="true"/>
+        <div className="wrap about-content">
+          <p className="eyebrow">ABOUT US</p>
+          <h2>A journey born from curiosity.</h2>
+          <p>We’re at the beginning of an exploration. A personal curiosity about what it means to live a more conscious, connected and fulfilling life.</p>
+          <p>We believe there is always more to discover in ourselves, in one another, and in the world around us. We’re creating space for new questions, fresh perspectives and meaningful experiences.</p>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <div className="footer-ornament left"><ArchMark light/></div>
+        <div className="footer-main">
+          <p className="eyebrow">A NEW POSSIBILITY</p>
+          <h2>Do you feel there’s <em>more?</em></h2>
+          <p>Join our waitlist and be part of this exciting journey.</p>
+          <CTA>Join the Waitlist</CTA>
+        </div>
+        <div className="footer-ornament right"><ArchMark light/></div>
+        <div className="footer-bottom"><Brand light/><span>© 2026 SPIRITUAL ENERGY</span><span>MADE WITH CURIOSITY</span></div>
       </footer>
     </main>
   );
